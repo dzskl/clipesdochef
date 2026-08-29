@@ -127,8 +127,12 @@ export default function Footer() {
           <div className="flex flex-col gap-2 text-[13px] text-muted sm:flex-row sm:items-center sm:justify-between">
             <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
               <Val>{brand.companyName}</Val>
-              <span aria-hidden="true">•</span>
-              CNPJ: <Val>{footer.cnpj}</Val>
+              {footer.cnpj && (
+                <>
+                  <span aria-hidden="true">•</span>
+                  CNPJ: <Val>{footer.cnpj}</Val>
+                </>
+              )}
             </p>
             <p>
               © {year} <Val>{brand.productName}</Val>. {footer.copyright}

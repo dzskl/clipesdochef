@@ -19,7 +19,7 @@ export const siteConfig = {
    * ========================================================================*/
   brand: {
     productName: 'ClipesDoChef',           // nome do produto
-    companyName: '[NOME DA EMPRESA]',      // ex.: 'ClipesDoChef LTDA'
+    companyName: 'ClipesDoChef',           // venda como pessoa física, sem CNPJ
     domain: 'clipesdochef.com.br',         // CONFIRMAR — usado em SEO/Open Graph
     logo: {
       type: 'image',                       // 'text' = usa o texto | 'image' = usa src
@@ -255,8 +255,8 @@ export const siteConfig = {
       value: '[VALOR]',
       image: { src: '', alt: 'Área de membros do ClipesDoChef', placeholder: '[PRINT DA ÁREA DE MEMBROS]' },
       highlights: [
-        '[Nº] nichos organizados por tema',
-        'Mais de [Nº] cortes disponíveis',
+        'Diversos nichos organizados por tema',
+        'Mais de 7.000 cortes disponíveis',
         'Novos cortes adicionados com frequência',
         'Download sem limite de quantidade',
       ],
@@ -362,7 +362,7 @@ export const siteConfig = {
     email: '0x1trampo@gmail.com',
     phone: '',                 // vazio = a linha some do rodapé
     address: '',               // vazio = a linha some do rodapé
-    cnpj: '[CNPJ]',
+    cnpj: '',                  // vazio = a linha some do rodapé
     links: [
       { label: 'Política de Privacidade', href: 'politica-de-privacidade.html' },
       { label: 'Termos de Uso', href: 'termos-de-uso.html' },
