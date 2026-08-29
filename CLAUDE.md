@@ -96,9 +96,13 @@ matematicamente opostos. Se alguém "simplificar" isso para um token só, a aces
 
 ### 3.5 Proteções contra link quebrado
 
-- `offer.checkoutUrl` ainda é `[LINK DO CHECKOUT]`. Enquanto for placeholder, `checkoutHref()`
-  (`src/lib/links.js`) devolve `null` e **todos os 6 CTAs rolam até a seção de oferta** em vez
-  de virarem link morto. Colando a URL real da Hotmart, os 6 passam a apontar para ela de uma vez.
+- `offer.checkoutUrl` já tem a URL real da Hotmart. A guarda em `checkoutHref()`
+  (`src/lib/links.js`) continua valendo: se o campo voltar a ser um placeholder, os botões
+  de compra rolam até a seção de oferta em vez de virarem link morto.
+  São **5 botões de compra** (`BuyButton`), todos apontando para o checkout com `rel="noopener"`.
+  Os dois botões "Quero acessar" do cabeçalho (desktop e menu mobile) **não** são `BuyButton`:
+  têm `href="#oferta"` fixo no `Header.jsx` e rolam até a oferta de propósito, para o visitante
+  ver o preço antes do checkout.
 - `SafeLink` no `Footer.jsx` faz o mesmo com links de rede social: href placeholder vira texto.
 - Campos vazios no rodapé (`phone`, `address`) somem da lista em vez de deixar ícone órfão.
 
@@ -168,7 +172,6 @@ e-mail `0x1trampo@gmail.com` e Instagram `instagram.com/clipesdochef`.
 
 ### Falta (dados que só a dona tem)
 - [ ] `included.main.highlights` — os dois números: nichos e quantidade de cortes
-- [ ] `offer.checkoutUrl` — URL do checkout da Hotmart
 - [ ] `faq.items[6].a` — se o acesso é vitalício ou assinatura
 - [ ] 3 prints: área de membros, aulas, coleções (`included.*.image.src`) — o de
       templates já entrou (`templates-clipesdochef.jpg`)

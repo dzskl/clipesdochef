@@ -285,7 +285,7 @@ export const siteConfig = {
     priceLabel: 'Por apenas',
     price: 'R$ 37,90',
     paymentInfo: 'Pagamento único — Pix, cartão ou boleto',
-    checkoutUrl: '[LINK DO CHECKOUT]',        // cole aqui a URL do checkout da Hotmart
+    checkoutUrl: 'https://pay.hotmart.com/N107383436T',   // checkout da Hotmart
     ctaLabel: 'QUERO TER ACESSO AGORA',
     ctaSubtext: 'Acesso liberado logo após a confirmação do pagamento',
     includes: [
