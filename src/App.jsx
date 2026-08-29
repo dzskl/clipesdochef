@@ -10,13 +10,13 @@ import Benefits from './components/sections/Benefits.jsx';
 import Comparison from './components/sections/Comparison.jsx';
 import HowItWorks from './components/sections/HowItWorks.jsx';
 import Included from './components/sections/Included.jsx';
-import Testimonials from './components/sections/Testimonials.jsx';
 import Offer from './components/sections/Offer.jsx';
 import Guarantee from './components/sections/Guarantee.jsx';
 import Faq from './components/sections/Faq.jsx';
 import FinalCta from './components/sections/FinalCta.jsx';
 import Footer from './components/sections/Footer.jsx';
 import StickyCta from './components/sections/StickyCta.jsx';
+import ScrollProgress from './components/ui/ScrollProgress.jsx';
 
 export default function App() {
   // Reaplica tema e title a partir do config (permite editar cores com o dev server ligado)
@@ -31,6 +31,7 @@ export default function App() {
 
   return (
     <>
+      <ScrollProgress />
       <Header />
       <main id="conteudo">
         <Hero />
@@ -40,7 +41,6 @@ export default function App() {
         <Comparison />
         <HowItWorks />
         <Included />
-        <Testimonials />
         <Offer />
         <Guarantee />
         <Faq />

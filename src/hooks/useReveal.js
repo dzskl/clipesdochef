@@ -54,3 +54,40 @@ export function useScrolledPast(offset = 24) {
 
   return passed;
 }
+
+/**
+ * Progresso de leitura da página, de 0 a 1.
+ * Atualiza dentro de requestAnimationFrame para não pesar na rolagem.
+ */
+export function useScrollProgress() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      const rolavel = document.documentElement.scrollHeight - window.innerHeight;
+      if (rolavel <= 0) {
+        setProgress(0);
+        return;
+      }
+      setProgress(Math.min(1, Math.max(0, window.scrollY / rolavel)));
+    };
+
+    const agendar = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener('scroll', agendar, { passive: true });
+    window.addEventListener('resize', agendar, { passive: true });
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', agendar);
+      window.removeEventListener('resize', agendar);
+    };
+  }, []);
+
+  return progress;
+}

@@ -83,7 +83,6 @@ export const siteConfig = {
       { label: 'O produto', href: '#produto' },
       { label: 'Benefícios', href: '#beneficios' },
       { label: 'Como funciona', href: '#como-funciona' },
-      { label: 'Depoimentos', href: '#depoimentos' },
       { label: 'Dúvidas', href: '#faq' },
     ],
     ctaLabel: 'Quero acessar',
@@ -272,27 +271,7 @@ export const siteConfig = {
   },
 
   /* ==========================================================================
-   * 12. PROVA SOCIAL
-   *     ATENÇÃO: mantenha como placeholder até ter depoimentos reais e
-   *     autorizados. Não publique resultados ou números que não sejam reais.
-   * ========================================================================*/
-  testimonials: {
-    eyebrow: 'Prova social',
-    title: 'O que dizem *quem já usou*',
-    subtitle: 'Espaço reservado para quem já está usando a biblioteca no dia a dia.',
-    items: [
-      { quote: '[DEPOIMENTO REAL DO CLIENTE]', name: '[NOME DO CLIENTE]', role: '[CIDADE / NICHO DA PÁGINA]', avatar: '' },
-      { quote: '[DEPOIMENTO REAL DO CLIENTE]', name: '[NOME DO CLIENTE]', role: '[CIDADE / NICHO DA PÁGINA]', avatar: '' },
-      { quote: '[DEPOIMENTO REAL DO CLIENTE]', name: '[NOME DO CLIENTE]', role: '[CIDADE / NICHO DA PÁGINA]', avatar: '' },
-      { quote: '[DEPOIMENTO REAL DO CLIENTE]', name: '[NOME DO CLIENTE]', role: '[CIDADE / NICHO DA PÁGINA]', avatar: '' },
-    ],
-    // Aviso exibido enquanto os depoimentos forem placeholders (some sozinho)
-    pendingNotice:
-      'Área reservada para depoimentos reais. Substitua os placeholders apenas por depoimentos autorizados pelos clientes.',
-  },
-
-  /* ==========================================================================
-   * 13. OFERTA
+   * 12. OFERTA
    * ========================================================================*/
   offer: {
     eyebrow: 'Oferta',
@@ -325,7 +304,7 @@ export const siteConfig = {
   },
 
   /* ==========================================================================
-   * 14. GARANTIA
+   * 13. GARANTIA
    *     O prazo de 7 dias é o direito de arrependimento do art. 49 do CDC,
    *     obrigatório em compras online no Brasil. Se você oferecer mais que
    *     isso (14, 30 dias), altere os três campos abaixo.
@@ -340,7 +319,7 @@ export const siteConfig = {
   },
 
   /* ==========================================================================
-   * 15. FAQ
+   * 14. FAQ
    * ========================================================================*/
   faq: {
     eyebrow: 'Dúvidas frequentes',
@@ -361,7 +340,7 @@ export const siteConfig = {
   },
 
   /* ==========================================================================
-   * 16. CTA FINAL
+   * 15. CTA FINAL
    * ========================================================================*/
   finalCta: {
     title: 'Amanhã você pode estar caçando vídeo de novo — ou *com a semana inteira já postada*',
@@ -376,7 +355,7 @@ export const siteConfig = {
   },
 
   /* ==========================================================================
-   * 17. RODAPÉ
+   * 16. RODAPÉ
    * ========================================================================*/
   footer: {
     about: 'O ClipesDoChef é uma biblioteca de cortes e materiais de edição para quem constrói páginas de conteúdo nas redes sociais.',
@@ -401,11 +380,12 @@ export const siteConfig = {
   },
 
   /* ==========================================================================
-   * 18. COMPORTAMENTO DA PÁGINA
+   * 17. COMPORTAMENTO DA PÁGINA
    * ========================================================================*/
   behavior: {
     stickyMobileCta: true,   // barra fixa de compra no celular
     animations: true,        // animações de entrada (respeita prefers-reduced-motion)
+    scrollProgress: true,    // barra fina de progresso de leitura no topo
     smoothScroll: true,
   },
 };

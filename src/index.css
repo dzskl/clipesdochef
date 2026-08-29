@@ -106,7 +106,31 @@
   }
 
   .card-hover {
-    @apply hover:-translate-y-1 hover:border-primary/40 hover:shadow-glow;
+    @apply hover:-translate-y-1.5 hover:border-primary/45 hover:shadow-glow;
+  }
+
+  /* Filete luminoso no topo do card, revelado no hover.
+     Recuado nas laterais para nao escapar do canto arredondado. */
+  .card-hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 1.5rem;
+    right: 1.5rem;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms ease;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgb(var(--color-primary-light) / 0.75),
+      transparent
+    );
+  }
+
+  .card-hover:hover::after {
+    opacity: 1;
   }
 
   /* Textura sutil de fundo — nada de imagem, só gradientes */

@@ -8,12 +8,15 @@ import Icon from './Icon.jsx';
  */
 const variants = {
   primary:
-    'bg-primary text-on-primary shadow-cta hover:bg-primary-dark hover:shadow-glow active:translate-y-px',
+    'bg-primary text-on-primary shadow-cta hover:bg-primary-dark hover:-translate-y-0.5 ' +
+    'hover:shadow-glow active:translate-y-0 active:scale-[0.98]',
   secondary:
-    'border border-line bg-white/[0.04] text-content hover:border-primary/50 hover:bg-white/[0.07]',
+    'border border-line bg-white/[0.04] text-content hover:-translate-y-0.5 ' +
+    'hover:border-primary/50 hover:bg-white/[0.07] active:translate-y-0 active:scale-[0.98]',
   ghost: 'text-content hover:text-primary-light',
   outline:
-    'border border-primary/60 text-primary-light hover:bg-primary hover:text-on-primary',
+    'border border-primary/60 text-primary-light hover:-translate-y-0.5 hover:bg-primary ' +
+    'hover:text-on-primary active:translate-y-0 active:scale-[0.98]',
 };
 
 const sizes = {
@@ -58,8 +61,8 @@ export default function Button({
         <span
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r
-                     from-transparent via-white/35 to-transparent transition-transform
-                     duration-700 group-hover:translate-x-full"
+                     from-transparent via-white/45 to-transparent transition-transform
+                     duration-[850ms] ease-out group-hover:translate-x-full"
         />
       )}
       <span className="relative flex items-center gap-2.5 text-center">
