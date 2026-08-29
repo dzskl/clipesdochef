@@ -127,10 +127,12 @@ src/
                                 HowItWorks, Included, Testimonials, Offer, Guarantee,
                                 Faq, FinalCta, Footer, StickyCta
 public/
-├── logo-clipesdochef.png       wordmark recortado da arte original
-├── marca-clipesdochef.jpg      arte principal (hero)
-├── marca-hotmart.jpg           versão com selo Hotmart (seção do produto)
+├── logo-clipesdochef.png       wordmark do cabeçalho — AINDA COM A GRAFIA ANTIGA
+├── marca-clipesdochef.jpg      arte principal (hero) — grafia nova
+├── marca-hotmart.jpg           versão com selo Hotmart — AINDA COM A GRAFIA ANTIGA
+├── templates-clipesdochef.jpg  arte do bônus 01 (templates no Canva)
 ├── favicon.png, apple-touch-icon.png, og-image.jpg
+│                               gerados da arte nova (rosto e peça inteira)
 └── politica-de-privacidade.html, termos-de-uso.html, politica-de-reembolso.html
                                 (modelos provisórios, precisam de revisão jurídica)
 ```
@@ -168,7 +170,11 @@ e-mail `0x1trampo@gmail.com` e Instagram `instagram.com/clipesdochef`.
 - [ ] `included.main.highlights` — os dois números: nichos e quantidade de cortes
 - [ ] `offer.checkoutUrl` — URL do checkout da Hotmart
 - [ ] `faq.items[6].a` — se o acesso é vitalício ou assinatura
-- [ ] 4 prints: área de membros, templates, aulas, coleções (`included.*.image.src`)
+- [ ] 3 prints: área de membros, aulas, coleções (`included.*.image.src`) — o de
+      templates já entrou (`templates-clipesdochef.jpg`)
+- [ ] Letreiro do cabeçalho na grafia nova, com fundo transparente
+      (substitui `logo-clipesdochef.png`)
+- [ ] Arte com o selo da Hotmart na grafia nova (substitui `marca-hotmart.jpg`)
 - [ ] `brand.companyName` e `footer.cnpj`
 - [ ] `included.*.value` e `included.totalValue` — valores de referência do value stack
 - [ ] Revisão jurídica das 3 páginas em `public/`
@@ -177,9 +183,16 @@ e-mail `0x1trampo@gmail.com` e Instagram `instagram.com/clipesdochef`.
 - **Domínio**: `brand.domain` está como `clipesdochef.com.br`, não confirmado.
 
 ### Resolvidas (não reabrir)
-- **Grafia do nome** — confirmada pela dona: é **ClipesDoChef**, exatamente como está no
-  config. O letreiro da arte diz `CLIIPSDOCHEF` (dois I); essa grafia é da imagem e **não
-  deve ser propagada para o texto**. O @ do Instagram no rodapé já segue a grafia confirmada.
+- **Grafia do nome** — confirmada pela dona: é **ClipesDoChef**. A arte da marca foi
+  refeita com a grafia certa e já substituída em `marca-clipesdochef.jpg`, `og-image.jpg`,
+  `favicon.png` e `apple-touch-icon.png`.
+
+  **Dois arquivos ainda trazem o `CLIIPSDOCHEF` antigo** e dependem de material que só a
+  dona tem: `logo-clipesdochef.png` (o logo do cabeçalho, visível em todas as telas) e
+  `marca-hotmart.jpg`. Enquanto não chegarem, o cabeçalho mostra a grafia errada ao lado
+  da arte corrigida. Alternativa provisória, se a espera for longa: trocar
+  `brand.logo.type` para `'text'`, que faz o componente `Logo` renderizar
+  `brand.logo.text` em vez da imagem. Nunca propague a grafia da imagem para o texto.
 - **Frequência de atualização** — confirmada pela dona: a biblioteca **não tem frequência
   fixa de atualização**. Toda promessa de atualização diária saiu do copy; o texto agora diz
   "com frequência" / "sempre crescendo". **Não reintroduza "todos os dias" descrevendo a
