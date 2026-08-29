@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   BASE
+   As cores/fontes vêm das CSS variables geradas por src/config/site.config.js
+   ========================================================================== */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+  }
+
+  html.smooth-scroll {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background font-sans text-content antialiased;
+    overflow-x: clip;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-heading font-bold tracking-tight;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Compensa o header fixo ao navegar pelas âncoras */
+  section[id] {
+    scroll-margin-top: 88px;
+  }
+
+  ::selection {
+    background: rgb(var(--color-primary) / 0.9);
+    color: rgb(var(--color-on-primary));
+  }
+
+  /* Acessibilidade: foco sempre visível */
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-primary-light));
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html.smooth-scroll { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* ==========================================================================
+   COMPONENTES REUTILIZÁVEIS
+   ========================================================================== */
+@layer components {
+  .section {
+    @apply relative py-16 sm:py-20 lg:py-28;
+  }
+
+  .section-tight {
+    @apply relative py-12 sm:py-16 lg:py-20;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03]
+           px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted
+           sm:text-xs;
+  }
+
+  .title-xl {
+    @apply font-heading text-[clamp(1.85rem,5.2vw,3.35rem)] leading-[1.1];
+  }
+
+  .title-lg {
+    @apply font-heading text-[clamp(1.6rem,4.2vw,2.6rem)] leading-[1.15];
+  }
+
+  .lead {
+    @apply text-[clamp(1rem,1.6vw,1.15rem)] leading-relaxed text-muted;
+  }
+
+  .gradient-text {
+    background-image: linear-gradient(
+      100deg,
+      rgb(var(--color-primary-light)) 0%,
+      rgb(var(--color-primary-light)) 38%,
+      rgb(var(--color-secondary)) 115%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .card {
+    @apply relative rounded-card border border-line bg-surface p-6 shadow-card
+           transition duration-300 sm:p-7;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-1 hover:border-primary/40 hover:shadow-glow;
+  }
+
+  /* Textura sutil de fundo — nada de imagem, só gradientes */
+  .ambient {
+    background-image:
+      radial-gradient(60rem 30rem at 15% -10%, rgb(var(--color-primary) / 0.10), transparent 60%),
+      radial-gradient(45rem 28rem at 95% 10%, rgb(var(--color-secondary) / 0.12), transparent 60%);
+  }
+
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-line to-transparent;
+  }
+}
+
+/* ==========================================================================
+   UTILITÁRIOS
+   ========================================================================== */
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 0 1px 12px rgb(0 0 0 / 0.4);
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+/* Marcação visual dos placeholders ainda não preenchidos.
+   Assim que o valor real substituir o texto entre [colchetes],
+   o estilo tracejado desaparece automaticamente. */
+@layer components {
+  .ph {
+    @apply inline-block rounded-md border border-dashed border-primary/45
+           bg-primary/[0.07] px-2 py-0.5 align-middle text-[0.9em]
+           font-medium leading-snug text-primary-light/90;
+  }
+}

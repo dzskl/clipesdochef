@@ -1,0 +1,214 @@
+# ClipesDoChef — página de vendas
+
+Contexto para quem continuar este projeto. Leia inteiro antes da primeira alteração.
+
+---
+
+## 1. O que é
+
+Landing page de vendas de produto digital, escrita do zero em React + Vite + Tailwind.
+Produto: **ClipesDoChef** — biblioteca de cortes de vídeo organizada por nicho, com
+templates de edição no Canva e aulas para iniciantes. O comprador usa o material para
+abastecer páginas no TikTok, Instagram, YouTube, Facebook e Kwai. Vendido pela Hotmart
+por **R$ 37,90** (pagamento único).
+
+A dona do projeto (Bianca) **não é desenvolvedora**. Ela edita textos e valores; qualquer
+coisa que exija mexer em JSX deve ser feita por quem estiver assistindo, não delegada a ela.
+
+---
+
+## 2. Comandos
+
+```bash
+npm install     # primeira vez
+npm run dev     # http://localhost:5173
+npm run build   # gera dist/
+npm run preview # testa o build
+```
+
+### Particularidades da máquina dela (Windows)
+
+- Node **v24.19.0** instalado em `C:\Program Files\nodejs`, mas o **PATH é instável**:
+  `npm` frequentemente não é reconhecido em janelas novas do PowerShell.
+- Contorno que funciona sempre:
+  ```powershell
+  & "C:\Program Files\nodejs\npm.cmd" install
+  ```
+- Ou, para corrigir a janela atual:
+  ```powershell
+  $env:Path += ";C:\Program Files\nodejs"
+  ```
+- A execution policy do PowerShell bloqueia `npm.ps1`. Use `npm.cmd` ou rode uma vez:
+  ```powershell
+  Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+  ```
+- Projeto em `C:\Users\Administrator\Downloads\pagina-de-vendas_1`.
+
+---
+
+## 3. Arquitetura — leia isto antes de editar qualquer coisa
+
+### 3.1 Uma única fonte de verdade: `src/config/site.config.js`
+
+**Todo** o conteúdo da página vive nesse arquivo: marca, cores, SEO, textos de todas as
+seções, preço, bônus, FAQ, rodapé. Os componentes são só apresentação.
+
+Regra: **nunca escreva texto de conteúdo dentro de um `.jsx`.** Se um texto novo precisa
+existir, ele entra no config e o componente lê de lá. Isso é o que permite a Bianca alterar
+a página sozinha.
+
+### 3.2 Cores por CSS variables
+
+`site.config.js → theme` contém hexadecimais. `src/lib/theme.js` converte para triplas RGB
+e injeta:
+
+- no build/dev, via `vite.config.js`, no atributo `style` da tag `<html>` (evita flash de cor);
+- em runtime, via `applyTheme()` no `App.jsx` (permite hot reload das cores).
+
+`tailwind.config.js` mapeia os tokens (`bg-primary`, `text-muted`, etc.) para essas variables.
+**Não escreva cor literal em componente nenhum.** Trocar a paleta = editar `theme` no config.
+
+### 3.3 Os três vermelhos — não unifique
+
+| Token | Uso | Por quê |
+|---|---|---|
+| `primary` `#E1000F` | preenchimento de botões e selos | branco em cima dá 4,99:1 (AA exige 4,5) |
+| `primaryLight` `#FF3B45` | textos pequenos, ícones, degradê de títulos | 5,72:1 sobre o fundo escuro |
+| `primaryDark` `#A80009` | hover dos botões | — |
+
+Um vermelho só **não resolve**: para passar em contraste com branco por cima ele precisa
+ser escuro; para passar como texto no fundo quase preto precisa ser claro. São requisitos
+matematicamente opostos. Se alguém "simplificar" isso para um token só, a acessibilidade quebra.
+
+`secondary` `#E3A93C` é o dourado da coroa da arte — usado em brilhos e no degradê dos títulos.
+
+### 3.4 Convenções de texto no config
+
+- **Placeholders**: texto entre `[COLCHETES]` é renderizado com borda tracejada vermelha
+  pelo componente `<Val>` (`src/lib/text.jsx`). Some sozinho quando o valor real entra.
+  Serve de checklist visual do que falta.
+- **Destaque em títulos**: trecho entre `*asteriscos*` recebe o degradê vermelho→dourado
+  via `<Highlight>`. Ex.: `'Comece a *vender hoje*'`.
+- **Ícones**: campo `icon` aceita nomes de `src/components/ui/Icon.jsx` — `bolt, target,
+  shield, clock, chart, gift, sparkles, lock, play, check, star, users, layers, rocket,
+  heart, wallet, mail, phone, chat, download, book, tool`. São SVG inline, **sem biblioteca
+  externa**. Precisa de um ícone novo? Adicione o path em `Icon.jsx`, não instale pacote.
+
+### 3.5 Proteções contra link quebrado
+
+- `offer.checkoutUrl` ainda é `[LINK DO CHECKOUT]`. Enquanto for placeholder, `checkoutHref()`
+  (`src/lib/links.js`) devolve `null` e **todos os 6 CTAs rolam até a seção de oferta** em vez
+  de virarem link morto. Colando a URL real da Hotmart, os 6 passam a apontar para ela de uma vez.
+- `SafeLink` no `Footer.jsx` faz o mesmo com links de rede social: href placeholder vira texto.
+- Campos vazios no rodapé (`phone`, `address`) somem da lista em vez de deixar ícone órfão.
+
+### 3.6 Imagens
+
+- Caminhos começam com `./` (ex.: `'./marca-clipesdochef.jpg'`), e o build usa `base: './'`.
+  Isso é **intencional**: faz a pasta `dist/` funcionar tanto hospedada quanto aberta por
+  duplo clique no `index.html`. Não troque para caminho absoluto.
+- O plugin `scriptClassico()` em `vite.config.js` remove `type="module"` e `crossorigin` do
+  HTML do build, e o rollup gera IIFE — é o que permite abrir por `file://`. Também intencional.
+- `<Media>` (`src/components/ui/Media.jsx`) mostra um placeholder tracejado quando `src` é
+  vazio. `alt` é obrigatório.
+
+### 3.7 Estrutura
+
+```
+src/
+├── config/site.config.js       ← 100% do conteúdo
+├── lib/
+│   ├── theme.js                hex → CSS variables
+│   ├── text.jsx                <Highlight>, <Val>, isPlaceholder, cx
+│   └── links.js                guarda do checkout
+├── hooks/useReveal.js          IntersectionObserver + scroll
+├── components/ui/              Button, BuyButton, Section, Media, Reveal, Icon, Logo
+└── components/sections/        Header, Hero, Problem, Product, Benefits, Comparison,
+                                HowItWorks, Included, Testimonials, Offer, Guarantee,
+                                Faq, FinalCta, Footer, StickyCta
+public/
+├── logo-clipesdochef.png       wordmark recortado da arte original
+├── marca-clipesdochef.jpg      arte principal (hero)
+├── marca-hotmart.jpg           versão com selo Hotmart (seção do produto)
+├── favicon.png, apple-touch-icon.png, og-image.jpg
+└── politica-de-privacidade.html, termos-de-uso.html, politica-de-reembolso.html
+                                (modelos provisórios, precisam de revisão jurídica)
+```
+
+---
+
+## 4. Regras de conteúdo — inegociáveis
+
+1. **Não inventar depoimentos.** A seção `testimonials` está com placeholders de propósito.
+   Só entram depoimentos reais e autorizados pelos clientes. Enquanto houver placeholder,
+   um aviso aparece na seção (some sozinho depois).
+2. **Não inventar preço "de".** `offer.oldPrice` está vazio de propósito — preço riscado que
+   nunca foi praticado é publicidade enganosa (art. 37 do CDC) e a Hotmart derruba.
+   Só preencher se aquele valor foi realmente cobrado.
+3. **Não inventar números.** `[Nº] nichos` e `mais de [Nº] cortes` seguem como placeholder
+   porque ninguém confirmou os números reais. Não chute.
+4. **Garantia**: os 7 dias são o direito de arrependimento do art. 49 do CDC, obrigatório em
+   venda online no Brasil — por isso pode ficar escrito. Se a oferta for maior (14, 30 dias),
+   alterar `guarantee.days`, `guarantee.title` e `guarantee.seal`.
+5. **Sem promessa de ganho.** O copy fala de tempo economizado e material pronto, nunca de
+   dinheiro garantido. O disclaimer do rodapé sustenta isso. Não introduza "ganhe R$ X".
+6. **A referência (mistercuts.com.br) serviu só para entender o modelo de negócio.** Nenhum
+   texto, imagem ou trecho de código foi copiado, e nada deve ser. O copy atual é autoral.
+
+---
+
+## 5. Estado atual
+
+### Pronto
+Todas as 13 seções + comparativo, copy completo em português, identidade visual aplicada a
+partir da arte da marca, preço R$ 37,90, garantia de 7 dias, 10 perguntas no FAQ, rodapé com
+e-mail `0x1trampo@gmail.com` e Instagram `instagram.com/clipesdochef`.
+
+### Falta (dados que só a dona tem)
+- [ ] `included.main.highlights` — os dois números: nichos e quantidade de cortes
+- [ ] `offer.checkoutUrl` — URL do checkout da Hotmart
+- [ ] `faq.items[6].a` — se o acesso é vitalício ou assinatura
+- [ ] 4 prints: área de membros, templates, aulas, coleções (`included.*.image.src`)
+- [ ] `brand.companyName` e `footer.cnpj`
+- [ ] `included.*.value` e `included.totalValue` — valores de referência do value stack
+- [ ] Revisão jurídica das 3 páginas em `public/`
+
+### Pendências em aberto
+- **Grafia do nome**: o config usa `ClipesDoChef`, mas o letreiro da arte diz **CLIIPSDOCHEF**
+  (dois I). Ninguém confirmou qual é a correta. O mesmo vale para o @ do Instagram.
+- **Domínio**: `brand.domain` está como `clipesdochef.com.br`, não confirmado.
+- **"Atualizado todos os dias"**: essa afirmação aparece em 4 lugares do copy. Foi escrita
+  porque a dona disse que o produto tem tudo o que a referência tem. **Não foi confirmada.**
+  Se a atualização for semanal, corrigir os 4 pontos — é promessa contratual na página.
+
+---
+
+## 6. Padrão de qualidade
+
+A página foi validada com Chromium real. Mantenha esse nível ao alterar qualquer coisa:
+
+- Sem scroll horizontal e sem elemento estourando a tela em **360, 390, 768, 1280, 1440 e 1920px**
+- Um único `<h1>`; hierarquia de headings sem saltos (h2 → h3, nunca h2 → h4)
+- Toda `<img>` com `alt`
+- Contraste: texto principal 18,5:1 · texto secundário 8,0:1 · branco no botão 4,99:1 ·
+  vermelho claro no fundo 5,7:1 · dourado 9,6:1 (mínimo AA = 4,5:1)
+- Alvos de toque ≥ 40px de altura
+- Menu mobile fecha com Esc e trava o scroll do fundo; FAQ com `aria-expanded`/`aria-controls`
+- Animações respeitam `prefers-reduced-motion`
+- Barra fixa de compra no celular aparece após a primeira dobra e some na seção de oferta
+
+**Antes de dizer que terminou:** rode `npm run build` e confira nos breakpoints acima.
+Placeholder tracejado na tela é esperado — é o que falta preencher, não é bug.
+
+---
+
+## 7. Publicar
+
+`npm run build` gera `dist/`. Essa pasta:
+
+- abre por duplo clique no `index.html` (sem servidor);
+- pode ser arrastada para **app.netlify.com/drop** e o site fica no ar;
+- funciona igual em Vercel e Cloudflare Pages.
+
+Não há GitHub configurado. Existe conector de Netlify e Vercel disponíveis na conta Claude
+dela, se ela quiser deploy sem terminal.

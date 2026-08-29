@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="{{LANG}}" style="{{THEME_STYLE}}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="{{THEME_COLOR}}" />
+
+    <!-- SEO — editado automaticamente a partir de src/config/site.config.js -->
+    <title>{{TITLE}}</title>
+    <meta name="description" content="{{DESCRIPTION}}" />
+    <link rel="canonical" href="{{SITE_URL}}/" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="{{LOCALE}}" />
+    <meta property="og:site_name" content="{{PRODUCT_NAME}}" />
+    <meta property="og:title" content="{{TITLE}}" />
+    <meta property="og:description" content="{{DESCRIPTION}}" />
+    <meta property="og:url" content="{{SITE_URL}}/" />
+    <meta property="og:image" content="{{OG_IMAGE}}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{TITLE}}" />
+    <meta name="twitter:description" content="{{DESCRIPTION}}" />
+    <meta name="twitter:image" content="{{OG_IMAGE}}" />
+
+    <!-- Favicon (troque o arquivo em /public mantendo o nome) -->
+    <link rel="icon" href="{{FAVICON}}" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+
+    <!-- Fontes. Ao trocar as famílias em site.config.js -> theme,
+         atualize também a URL abaixo. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap"
+    />
+
+    <!-- A paleta (CSS variables) é injetada no atributo style da tag <html>
+         a partir de src/config/site.config.js -> theme, evitando qualquer
+         flash de cor antes do carregamento do JavaScript. -->
+
+    <!--
+      Dados estruturados (opcional). Descomente e preencha quando o produto,
+      o preço e a URL do checkout estiverem definidos.
+      <script type="application/ld+json">
+      { "@context": "https://schema.org", "@type": "Product", "name": "", "description": "",
+        "offers": { "@type": "Offer", "price": "", "priceCurrency": "BRL", "url": "" } }
+      </script>
+    -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      Esta página precisa de JavaScript ativado para ser exibida corretamente.
+    </noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
