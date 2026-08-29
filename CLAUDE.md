@@ -131,7 +131,9 @@ src/
                                 HowItWorks, Included, Testimonials, Offer, Guarantee,
                                 Faq, FinalCta, Footer, StickyCta
 public/
-├── logo-clipesdochef.png       wordmark do cabeçalho — AINDA COM A GRAFIA ANTIGA
+├── logo-clipesdochef.png       wordmark do cabeçalho (deitado) — grafia nova
+├── letreiro-clipesdochef.png   letreiro empilhado, grafia nova — NÃO USADO na página:
+│                               a proporção (1,3:1) não cabe na faixa do cabeçalho
 ├── marca-clipesdochef.jpg      arte principal (hero) — grafia nova
 ├── marca-hotmart.jpg           versão com selo Hotmart — AINDA COM A GRAFIA ANTIGA
 ├── templates-clipesdochef.jpg  arte do bônus 01 (templates no Canva)
@@ -171,16 +173,16 @@ partir da arte da marca, preço R$ 37,90, garantia de 7 dias, 10 perguntas no FA
 e-mail `0x1trampo@gmail.com` e Instagram `instagram.com/clipesdochef`.
 
 ### Falta (dados que só a dona tem)
-- [ ] `included.main.highlights` — os dois números: nichos e quantidade de cortes
 - [ ] `faq.items[6].a` — se o acesso é vitalício ou assinatura
 - [ ] 3 prints: área de membros, aulas, coleções (`included.*.image.src`) — o de
       templates já entrou (`templates-clipesdochef.jpg`)
-- [ ] Letreiro do cabeçalho na grafia nova, com fundo transparente
-      (substitui `logo-clipesdochef.png`)
 - [ ] Arte com o selo da Hotmart na grafia nova (substitui `marca-hotmart.jpg`)
-- [ ] `brand.companyName` e `footer.cnpj`
-- [ ] `included.*.value` e `included.totalValue` — valores de referência do value stack
 - [ ] Revisão jurídica das 3 páginas em `public/`
+
+A página não tem mais nenhum placeholder tracejado. Os campos de valor
+(`included.*.value`, `included.totalValue`) ficaram **vazios de propósito**: só o combo
+é vendido, não há pacote avulso, então não existe valor de referência a comparar. Os
+blocos que os exibiam só voltam a aparecer se os campos forem preenchidos.
 
 ### Pendências em aberto
 - **Domínio**: `brand.domain` está como `clipesdochef.com.br`, não confirmado.
@@ -190,12 +192,16 @@ e-mail `0x1trampo@gmail.com` e Instagram `instagram.com/clipesdochef`.
   refeita com a grafia certa e já substituída em `marca-clipesdochef.jpg`, `og-image.jpg`,
   `favicon.png` e `apple-touch-icon.png`.
 
-  **Dois arquivos ainda trazem o `CLIIPSDOCHEF` antigo** e dependem de material que só a
-  dona tem: `logo-clipesdochef.png` (o logo do cabeçalho, visível em todas as telas) e
-  `marca-hotmart.jpg`. Enquanto não chegarem, o cabeçalho mostra a grafia errada ao lado
-  da arte corrigida. Alternativa provisória, se a espera for longa: trocar
-  `brand.logo.type` para `'text'`, que faz o componente `Logo` renderizar
-  `brand.logo.text` em vez da imagem. Nunca propague a grafia da imagem para o texto.
+  O logo do cabeçalho também já está na grafia nova. **Só `marca-hotmart.jpg` ainda traz
+  o `CLIIPSDOCHEF` antigo**, e depende de material que só a dona tem.
+
+  Sobre o formato do logo: o cabeçalho renderiza a imagem com 40px de altura, então o
+  letreiro precisa ser **deitado**. O atual tem proporção 3,1:1 e sai com 125px de
+  largura. Uma versão empilhada em duas linhas (como `letreiro-clipesdochef.png`, 1,3:1)
+  sairia com 53px e ficaria ilegível — por isso ela existe no projeto mas não é usada.
+  Se algum dia faltar um letreiro deitado, a saída é trocar `brand.logo.type` para
+  `'text'`, que faz o componente `Logo` renderizar `brand.logo.text`. Nunca propague a
+  grafia de uma imagem para o texto.
 - **Frequência de atualização** — confirmada pela dona: a biblioteca **não tem frequência
   fixa de atualização**. Toda promessa de atualização diária saiu do copy; o texto agora diz
   "com frequência" / "sempre crescendo". **Não reintroduza "todos os dias" descrevendo a
