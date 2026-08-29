@@ -50,10 +50,12 @@ export default function Included() {
                 ))}
               </ul>
 
-              <p className="mt-6 flex items-center gap-2 text-sm text-muted">
-                Valor de referência:
-                <Val>{included.main.value}</Val>
-              </p>
+              {included.main.value && (
+                <p className="mt-6 flex items-center gap-2 text-sm text-muted">
+                  Valor de referência:
+                  <Val>{included.main.value}</Val>
+                </p>
+              )}
             </div>
           </div>
         </article>
@@ -77,24 +79,28 @@ export default function Included() {
               </span>
               <h3 className="mt-3 text-lg font-semibold leading-snug text-content">{bonus.title}</h3>
               <p className="mt-2.5 flex-1 text-[15px] leading-relaxed text-muted">{bonus.text}</p>
-              <p className="mt-5 flex items-center gap-2 border-t border-line pt-4 text-sm text-muted">
-                Valor: <Val>{bonus.value}</Val>
-              </p>
+              {bonus.value && (
+                <p className="mt-5 flex items-center gap-2 border-t border-line pt-4 text-sm text-muted">
+                  Valor: <Val>{bonus.value}</Val>
+                </p>
+              )}
             </article>
           </Reveal>
         ))}
       </ul>
 
-      <Reveal delay={120} className="mt-8">
-        <div className="flex flex-col items-center justify-between gap-3 rounded-card border border-line bg-surface px-6 py-5 text-center sm:flex-row sm:text-left">
-          <span className="text-sm font-semibold uppercase tracking-[0.12em] text-muted">
-            {included.totalLabel}
-          </span>
-          <span className="font-heading text-xl font-bold text-content sm:text-2xl">
-            <Val>{included.totalValue}</Val>
-          </span>
-        </div>
-      </Reveal>
+      {included.totalValue && (
+        <Reveal delay={120} className="mt-8">
+          <div className="flex flex-col items-center justify-between gap-3 rounded-card border border-line bg-surface px-6 py-5 text-center sm:flex-row sm:text-left">
+            <span className="text-sm font-semibold uppercase tracking-[0.12em] text-muted">
+              {included.totalLabel}
+            </span>
+            <span className="font-heading text-xl font-bold text-content sm:text-2xl">
+              <Val>{included.totalValue}</Val>
+            </span>
+          </div>
+        </Reveal>
+      )}
     </Section>
   );
 }

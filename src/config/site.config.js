@@ -252,7 +252,7 @@ export const siteConfig = {
       badge: 'Produto principal',
       title: 'Acesso à biblioteca ClipesDoChef',
       text: 'Acervo de cortes em boa qualidade, separado por nicho e sempre em crescimento. Você baixa o que quiser e usa nas suas páginas.',
-      value: '[VALOR]',
+      value: '',                  // vazio = a linha de valor some
       image: { src: '', alt: 'Área de membros do ClipesDoChef', placeholder: '[PRINT DA ÁREA DE MEMBROS]' },
       highlights: [
         'Diversos nichos organizados por tema',
@@ -262,12 +262,12 @@ export const siteConfig = {
       ],
     },
     bonuses: [
-      { badge: 'Bônus 01', title: 'Pacote de templates no Canva', text: 'Modelos editáveis de capa, legenda e formato vertical para montar o vídeo sem começar do zero.', value: '[VALOR]', image: { src: './templates-clipesdochef.jpg', alt: 'Pacote de templates virais do ClipesDoChef, editáveis no Canva', placeholder: '[PRINT DOS TEMPLATES]' } },
-      { badge: 'Bônus 02', title: 'Aulas de primeiros passos', text: 'Vídeos curtos mostrando como escolher o nicho, montar a página, editar e publicar em cada rede social.', value: '[VALOR]', image: { src: '', alt: 'Aulas de primeiros passos', placeholder: '[PRINT DAS AULAS]' } },
-      { badge: 'Bônus 03', title: 'Coleções de assuntos em alta', text: 'Seleções temáticas com o que está repercutindo no momento, para você publicar enquanto o assunto ainda rende.', value: '[VALOR]', image: { src: '', alt: 'Coleções de assuntos em alta', placeholder: '[PRINT DAS COLEÇÕES]' } },
+      { badge: 'Bônus 01', title: 'Pacote de templates no Canva', text: 'Modelos editáveis de capa, legenda e formato vertical para montar o vídeo sem começar do zero.', value: '', image: { src: './templates-clipesdochef.jpg', alt: 'Pacote de templates virais do ClipesDoChef, editáveis no Canva', placeholder: '[PRINT DOS TEMPLATES]' } },
+      { badge: 'Bônus 02', title: 'Aulas de primeiros passos', text: 'Vídeos curtos mostrando como escolher o nicho, montar a página, editar e publicar em cada rede social.', value: '', image: { src: '', alt: 'Aulas de primeiros passos', placeholder: '[PRINT DAS AULAS]' } },
+      { badge: 'Bônus 03', title: 'Coleções de assuntos em alta', text: 'Seleções temáticas com o que está repercutindo no momento, para você publicar enquanto o assunto ainda rende.', value: '', image: { src: '', alt: 'Coleções de assuntos em alta', placeholder: '[PRINT DAS COLEÇÕES]' } },
     ],
     totalLabel: 'Valor total do pacote',
-    totalValue: '[VALOR TOTAL]',
+    totalValue: '',                          // vazio = a faixa de total some
   },
 
   /* ==========================================================================
