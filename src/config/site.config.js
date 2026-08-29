@@ -70,7 +70,7 @@ export const siteConfig = {
    * ========================================================================*/
   announcement: {
     enabled: true,
-    text: 'Cortes novos entram na biblioteca todos os dias, sem custo extra',
+    text: 'A biblioteca recebe cortes novos com frequência, sem custo extra',
     linkLabel: 'Ver o que está incluso',
     linkHref: '#incluso',
   },
@@ -105,7 +105,7 @@ export const siteConfig = {
       alt: 'Arte do ClipesDoChef',
       placeholder: '[IMAGEM PRINCIPAL DO PRODUTO]',
       ratio: '1 / 1',                            // proporção do quadro
-      caption: 'Acervo organizado por nicho e atualizado todo dia',
+      caption: 'Acervo organizado por nicho e sempre crescendo',
     },
     // Selos de confiança abaixo do CTA (deixe [] para esconder)
     trustBadges: [
@@ -157,7 +157,7 @@ export const siteConfig = {
     eyebrow: 'A solução',
     title: 'Conheça o *ClipesDoChef*',
     description:
-      'É uma área de membros com uma biblioteca de cortes prontos, separados por nicho e atualizados todos os dias. Junto vêm os templates de edição no Canva e aulas curtas mostrando o caminho completo: escolher o nicho, montar a página, editar o vídeo e publicar.',
+      'É uma área de membros com uma biblioteca de cortes prontos, separados por nicho e com material novo entrando com frequência. Junto vêm os templates de edição no Canva e aulas curtas mostrando o caminho completo: escolher o nicho, montar a página, editar o vídeo e publicar.',
     forWho: {
       title: 'Feito para',
       items: [
@@ -176,7 +176,7 @@ export const siteConfig = {
     },
     differentials: [
       { icon: 'layers', title: 'Acervo separado por nicho', text: 'Nada de pasta bagunçada: os cortes vêm organizados por tema, para você abastecer uma página com identidade clara.' },
-      { icon: 'rocket', title: 'Atualização diária', text: 'Material novo entra todos os dias, incluindo o que está repercutindo, para você não postar só o que já saturou.' },
+      { icon: 'rocket', title: 'Acervo sempre crescendo', text: 'Material novo entra com frequência, incluindo o que está repercutindo, para você não postar só o que já saturou.' },
       { icon: 'tool', title: 'Templates e aulas inclusos', text: 'Modelos editáveis no Canva e aulas curtas cobrindo a edição, a publicação e a rotina de postagem em cada rede.' },
     ],
     image: {
@@ -195,7 +195,7 @@ export const siteConfig = {
     title: 'O que muda na prática *depois do acesso*',
     subtitle: 'Menos tempo caçando vídeo, mais tempo publicando.',
     items: [
-      { icon: 'bolt',     title: 'Material pronto todo dia', text: 'Você abre a biblioteca, escolhe o corte e já parte para a edição. A parte demorada do trabalho já está feita.' },
+      { icon: 'bolt',     title: 'Material pronto esperando', text: 'Você abre a biblioteca, escolhe o corte e já parte para a edição. A parte demorada do trabalho já está feita.' },
       { icon: 'layers',   title: 'Nichos organizados',       text: 'Escolha um tema e abasteça sua página com conteúdo coerente, do jeito que as redes entregam melhor.' },
       { icon: 'clock',    title: 'Rotina de postagem viável', text: 'Dá para deixar a semana inteira editada e agendada em uma única sessão, em vez de correr atrás de vídeo todo dia.' },
       { icon: 'wallet',   title: 'Sem custo de produção',    text: 'Nada de câmera, microfone, iluminação ou equipe. Seu investimento é o acesso e o seu tempo de edição.' },
@@ -218,7 +218,7 @@ export const siteConfig = {
     rows: [
       { label: 'Achar o vídeo',        without: 'Horas rolando o feed até aparecer algo aproveitável', with: 'Biblioteca separada por nicho: você escolhe e baixa' },
       { label: 'Qualidade do arquivo', without: 'Gravação de tela, marca d\u2019água e imagem tremida',   with: 'Arquivos prontos para editar, sem remendo' },
-      { label: 'Assunto do momento',   without: 'Você descobre quando o assunto já passou',           with: 'Coleções do que está repercutindo, renovadas todo dia' },
+      { label: 'Assunto do momento',   without: 'Você descobre quando o assunto já passou',           with: 'Coleções do que está repercutindo, renovadas com frequência' },
       { label: 'Edição',               without: 'Começar do zero a cada vídeo',                       with: 'Templates no Canva prontos para preencher' },
       { label: 'Aprendizado',          without: 'Tutorial solto, cada um ensinando de um jeito',      with: 'Aulas curtas na ordem certa, do nicho à publicação' },
       { label: 'Constância',           without: 'Depende da sua energia naquele dia',                 with: 'Dá para editar a semana inteira de uma vez só' },
@@ -236,7 +236,7 @@ export const siteConfig = {
       { title: 'Entre na área de membros', text: 'Assim que o pagamento é confirmado, você recebe o acesso por e-mail e entra na biblioteca pelo navegador.' },
       { title: 'Escolha o seu nicho',      text: 'Navegue pelas pastas temáticas e baixe os cortes que combinam com a página que você quer construir.' },
       { title: 'Edite com os templates',   text: 'Use os modelos do Canva para montar o vídeo no formato certo de cada rede. As aulas mostram o passo a passo.' },
-      { title: 'Publique e mantenha o ritmo', text: 'Suba no TikTok, Instagram, YouTube, Facebook ou Kwai e siga postando. Material novo entra na biblioteca todo dia.' },
+      { title: 'Publique e mantenha o ritmo', text: 'Suba no TikTok, Instagram, YouTube, Facebook ou Kwai e siga postando. A biblioteca continua recebendo material novo.' },
     ],
     ctaLabel: 'Quero começar agora',
   },
@@ -252,13 +252,13 @@ export const siteConfig = {
     main: {
       badge: 'Produto principal',
       title: 'Acesso à biblioteca ClipesDoChef',
-      text: 'Acervo de cortes em boa qualidade, separado por nicho e abastecido todos os dias. Você baixa o que quiser e usa nas suas páginas.',
+      text: 'Acervo de cortes em boa qualidade, separado por nicho e sempre em crescimento. Você baixa o que quiser e usa nas suas páginas.',
       value: '[VALOR]',
       image: { src: '', alt: 'Área de membros do ClipesDoChef', placeholder: '[PRINT DA ÁREA DE MEMBROS]' },
       highlights: [
         '[Nº] nichos organizados por tema',
         'Mais de [Nº] cortes disponíveis',
-        'Vídeos novos adicionados todos os dias',
+        'Novos cortes adicionados com frequência',
         'Download sem limite de quantidade',
       ],
     },
@@ -311,7 +311,7 @@ export const siteConfig = {
     ctaSubtext: 'Acesso liberado logo após a confirmação do pagamento',
     includes: [
       'Biblioteca completa de cortes, separada por nicho',
-      'Cortes novos adicionados todos os dias',
+      'Novos cortes adicionados com frequência',
       'Pacote de templates editáveis no Canva',
       'Aulas de primeiros passos, do zero',
       'Coleções de assuntos em alta',
@@ -367,7 +367,7 @@ export const siteConfig = {
     title: 'Amanhã você pode estar caçando vídeo de novo — ou *com a semana inteira já postada*',
     subtitle: 'A biblioteca, os templates e o passo a passo ficam disponíveis assim que o pagamento é confirmado.',
     bullets: [
-      'Biblioteca separada por nicho e abastecida todos os dias',
+      'Biblioteca separada por nicho e sempre crescendo',
       'Templates no Canva e aulas para quem está começando do zero',
       'Acesso imediato e garantia de 7 dias',
     ],

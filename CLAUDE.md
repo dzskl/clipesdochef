@@ -174,12 +174,20 @@ e-mail `0x1trampo@gmail.com` e Instagram `instagram.com/clipesdochef`.
 - [ ] Revisão jurídica das 3 páginas em `public/`
 
 ### Pendências em aberto
-- **Grafia do nome**: o config usa `ClipesDoChef`, mas o letreiro da arte diz **CLIIPSDOCHEF**
-  (dois I). Ninguém confirmou qual é a correta. O mesmo vale para o @ do Instagram.
 - **Domínio**: `brand.domain` está como `clipesdochef.com.br`, não confirmado.
-- **"Atualizado todos os dias"**: essa afirmação aparece em 4 lugares do copy. Foi escrita
-  porque a dona disse que o produto tem tudo o que a referência tem. **Não foi confirmada.**
-  Se a atualização for semanal, corrigir os 4 pontos — é promessa contratual na página.
+
+### Resolvidas (não reabrir)
+- **Grafia do nome** — confirmada pela dona: é **ClipesDoChef**, exatamente como está no
+  config. O letreiro da arte diz `CLIIPSDOCHEF` (dois I); essa grafia é da imagem e **não
+  deve ser propagada para o texto**. O @ do Instagram no rodapé já segue a grafia confirmada.
+- **Frequência de atualização** — confirmada pela dona: a biblioteca **não tem frequência
+  fixa de atualização**. Toda promessa de atualização diária saiu do copy; o texto agora diz
+  "com frequência" / "sempre crescendo". **Não reintroduza "todos os dias" descrevendo a
+  biblioteca** — seria promessa contratual que o produto não sustenta.
+
+  Atenção: quatro frases ainda dizem "todos os dias"/"todo dia" e **estão corretas** — elas
+  falam da rotina de postagem do *comprador*, não da atualização do acervo:
+  `seo.title`, `hero.headline`, `problem.bridgeText` e `benefits.items[2].text`.
 
 ---
 
