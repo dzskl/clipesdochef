@@ -68,7 +68,7 @@ export default function Included() {
                 src={bonus.image.src}
                 alt={bonus.image.alt}
                 placeholder={bonus.image.placeholder}
-                ratio="16 / 10"
+                ratio="1 / 1"
                 className="mb-5"
               />
               <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-secondary/40 bg-secondary/12 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-content">

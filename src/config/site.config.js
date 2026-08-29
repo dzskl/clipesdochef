@@ -262,7 +262,7 @@ export const siteConfig = {
       ],
     },
     bonuses: [
-      { badge: 'Bônus 01', title: 'Pacote de templates no Canva', text: 'Modelos editáveis de capa, legenda e formato vertical para montar o vídeo sem começar do zero.', value: '[VALOR]', image: { src: '', alt: 'Templates no Canva', placeholder: '[PRINT DOS TEMPLATES]' } },
+      { badge: 'Bônus 01', title: 'Pacote de templates no Canva', text: 'Modelos editáveis de capa, legenda e formato vertical para montar o vídeo sem começar do zero.', value: '[VALOR]', image: { src: './templates-clipesdochef.jpg', alt: 'Pacote de templates virais do ClipesDoChef, editáveis no Canva', placeholder: '[PRINT DOS TEMPLATES]' } },
       { badge: 'Bônus 02', title: 'Aulas de primeiros passos', text: 'Vídeos curtos mostrando como escolher o nicho, montar a página, editar e publicar em cada rede social.', value: '[VALOR]', image: { src: '', alt: 'Aulas de primeiros passos', placeholder: '[PRINT DAS AULAS]' } },
       { badge: 'Bônus 03', title: 'Coleções de assuntos em alta', text: 'Seleções temáticas com o que está repercutindo no momento, para você publicar enquanto o assunto ainda rende.', value: '[VALOR]', image: { src: '', alt: 'Coleções de assuntos em alta', placeholder: '[PRINT DAS COLEÇÕES]' } },
     ],
