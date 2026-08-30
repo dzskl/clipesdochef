@@ -359,7 +359,7 @@ export const siteConfig = {
    * ========================================================================*/
   footer: {
     about: 'O ClipesDoChef é uma biblioteca de cortes e materiais de edição para quem constrói páginas de conteúdo nas redes sociais.',
-    email: '0x1trampo@gmail.com',
+    email: 'contato@clipesdochef.com',
     phone: '',                 // vazio = a linha some do rodapé
     address: '',               // vazio = a linha some do rodapé
     cnpj: '',                  // vazio = a linha some do rodapé
@@ -367,7 +367,7 @@ export const siteConfig = {
       { label: 'Política de Privacidade', href: 'politica-de-privacidade.html' },
       { label: 'Termos de Uso', href: 'termos-de-uso.html' },
       { label: 'Política de Reembolso', href: 'politica-de-reembolso.html' },
-      { label: 'Contato', href: 'mailto:0x1trampo@gmail.com' },
+      { label: 'Contato', href: 'mailto:contato@clipesdochef.com' },
     ],
     // Para adicionar outra rede, copie uma linha e troque label/href/icon
     // (ícones disponíveis para redes: instagram, youtube, chat).
