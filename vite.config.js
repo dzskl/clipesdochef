@@ -13,12 +13,22 @@ function injectSiteConfig() {
   const clean = (value) => String(value ?? '').replace(/"/g, '&quot;');
   const url = `https://${String(brand.domain).replace(/^https?:\/\//, '')}`;
 
+  // O config usa caminhos relativos ('./arquivo'), que é o que faz a pasta dist/
+  // funcionar aberta por file://. Mas og:image exige URL absoluta, e concatenar
+  // direto grudaria o ponto do './' no domínio ('...com.br./og-image.jpg'),
+  // quebrando a miniatura ao compartilhar o link.
+  const absoluta = (caminho) => {
+    const p = String(caminho ?? '');
+    if (/^https?:\/\//.test(p)) return p;
+    return `${url}/${p.replace(/^\.?\/+/, '')}`;
+  };
+
   const tokens = {
     '{{LANG}}': seo.lang || 'pt-BR',
     '{{LOCALE}}': seo.locale || 'pt_BR',
     '{{TITLE}}': clean(seo.title),
     '{{DESCRIPTION}}': clean(seo.description),
-    '{{OG_IMAGE}}': `${url}${seo.ogImage}`,
+    '{{OG_IMAGE}}': absoluta(seo.ogImage),
     '{{FAVICON}}': seo.favicon,
     '{{SITE_URL}}': url,
     '{{PRODUCT_NAME}}': clean(brand.productName),
