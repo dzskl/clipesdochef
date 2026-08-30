@@ -20,7 +20,7 @@ export const siteConfig = {
   brand: {
     productName: 'ClipesDoChef',           // nome do produto
     companyName: 'ClipesDoChef',           // venda como pessoa física, sem CNPJ
-    domain: 'clipesdochef.com.br',         // CONFIRMAR — usado em SEO/Open Graph
+    domain: 'clipesdochef.com',            // confirmado — usado em SEO/Open Graph
     logo: {
       type: 'image',                       // 'text' = usa o texto | 'image' = usa src
       text: 'ClipesDoChef',                // usado se type === 'text'
