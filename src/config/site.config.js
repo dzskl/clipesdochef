@@ -386,6 +386,9 @@ export const siteConfig = {
     stickyMobileCta: true,   // barra fixa de compra no celular
     animations: true,        // animações de entrada (respeita prefers-reduced-motion)
     scrollProgress: true,    // barra fina de progresso de leitura no topo
+    particles: true,         // chuva de notas atrás do Hero — false desliga o efeito
+    revealDirection: 'down', // de onde os blocos entram: 'up' ou 'down'.
+                             // 'up' (subindo) é o padrão mais confortável em páginas longas
     smoothScroll: true,
   },
 };

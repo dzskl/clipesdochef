@@ -116,7 +116,26 @@ matematicamente opostos. Se alguém "simplificar" isso para um token só, a aces
 - `<Media>` (`src/components/ui/Media.jsx`) mostra um placeholder tracejado quando `src` é
   vazio. `alt` é obrigatório.
 
-### 3.7 Estrutura
+### 3.7 Efeitos — todos desligáveis pelo config
+
+`site.config.js → behavior` controla os quatro efeitos da página. Todos respeitam
+`prefers-reduced-motion` e nenhum usa biblioteca externa:
+
+| Campo | O que faz |
+|---|---|
+| `animations` | entrada dos blocos ao rolar (`<Reveal>`); `false` desliga tudo |
+| `revealDirection` | `'up'` (sobe) ou `'down'` (desce) na entrada dos blocos |
+| `scrollProgress` | barra fina de progresso de leitura no topo |
+| `particles` | chuva de cédulas atrás do Hero |
+| `smoothScroll` | rolagem suave nas âncoras |
+
+`MoneyRain.jsx` é canvas 2D puro, no máximo 20 partículas, `position: absolute` com
+`pointer-events: none` — não afeta layout nem captura clique. A cor sai da CSS variable
+`--color-secondary`; se ela não puder ser lida, o efeito não roda, para nenhuma cor
+literal precisar morar no componente. O `requestAnimationFrame` pausa quando
+`document.hidden` é verdadeiro.
+
+### 3.8 Estrutura
 
 ```
 src/
@@ -126,10 +145,11 @@ src/
 │   ├── text.jsx                <Highlight>, <Val>, isPlaceholder, cx
 │   └── links.js                guarda do checkout
 ├── hooks/useReveal.js          IntersectionObserver + scroll
-├── components/ui/              Button, BuyButton, Section, Media, Reveal, Icon, Logo
+├── components/ui/              Button, BuyButton, Section, Media, Reveal, Icon, Logo,
+│                               ScrollProgress, MoneyRain
 └── components/sections/        Header, Hero, Problem, Product, Benefits, Comparison,
-                                HowItWorks, Included, Testimonials, Offer, Guarantee,
-                                Faq, FinalCta, Footer, StickyCta
+                                HowItWorks, Included, Offer, Guarantee, Faq, FinalCta,
+                                Footer, StickyCta
 public/
 ├── logo-clipesdochef.png       wordmark do cabeçalho (deitado) — grafia nova
 ├── letreiro-clipesdochef.png   letreiro empilhado, grafia nova — NÃO USADO na página:
