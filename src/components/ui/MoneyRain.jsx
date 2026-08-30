@@ -52,27 +52,29 @@ function cedula(ctx, x, y, largura, altura, raio) {
   ctx.closePath();
 }
 
-const querAnimacao = () =>
-  Boolean(siteConfig.behavior.particles) &&
+/** A preferência de movimento reduzido tira a animação, não a decoração:
+ *  nesse caso as cédulas são desenhadas uma vez e ficam paradas. */
+const querMovimento = () =>
   typeof window !== 'undefined' &&
   !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
 export default function MoneyRain({ className = '' }) {
   const canvasRef = useRef(null);
-  const [ativo, setAtivo] = useState(querAnimacao);
+  const ligado = Boolean(siteConfig.behavior.particles);
+  const [comMovimento, setComMovimento] = useState(querMovimento);
 
   // Acompanha o prefers-reduced-motion em tempo real: ligar a preferência
-  // remove o canvas do DOM, desligar traz de volta.
+  // congela as cédulas, desligar volta a animar.
   useEffect(() => {
     const mq = window.matchMedia?.('(prefers-reduced-motion: reduce)');
     if (!mq) return undefined;
-    const aoMudar = () => setAtivo(querAnimacao());
+    const aoMudar = () => setComMovimento(querMovimento());
     mq.addEventListener('change', aoMudar);
     return () => mq.removeEventListener('change', aoMudar);
   }, []);
 
   useEffect(() => {
-    if (!ativo) return undefined;
+    if (!ligado) return undefined;
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext('2d');
     const cor = corDoTema();
@@ -105,27 +107,37 @@ export default function MoneyRain({ className = '' }) {
     };
 
     const dimensionar = () => {
+      const larguraAnterior = largura;
+      const alturaAnterior = altura;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const rect = canvas.getBoundingClientRect();
       largura = Math.max(1, rect.width);
       altura = Math.max(1, rect.height);
+      // atribuir width/height limpa o canvas e zera a transformação
       canvas.width = Math.round(largura * dpr);
       canvas.height = Math.round(altura * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       if (!notas.length) {
         for (let i = 0; i < MAX_PARTICULAS; i += 1) notas.push(calibrar(nova(false)));
-      } else {
-        // mantém as notas dentro do novo quadro, sem recriar tudo
+      } else if (larguraAnterior > 1 && alturaAnterior > 1) {
+        // acompanha o novo tamanho em vez de recriar tudo: o Hero muda de altura
+        // quando a fonte carrega, e recriar faria as notas saltarem de lugar
+        const fx = largura / larguraAnterior;
+        const fy = altura / alturaAnterior;
         notas.forEach((nota) => {
-          if (nota.x > largura) nota.x = aleatorio(0, largura);
+          nota.x *= fx;
+          nota.y *= fy;
         });
       }
+
+      // Sem loop não existe próximo quadro para repintar o que a linha acima
+      // apagou — então o redimensionamento precisa redesenhar por conta própria.
+      if (!comMovimento) pintar(0);
     };
 
-    const desenhar = (agora) => {
-      const dt = Math.min((agora - ultimo) / 1000, 0.05); // limita salto após aba oculta
-      ultimo = agora;
+    /** Pinta o estado atual das notas. dt = 0 desenha sem avançar nada. */
+    const pintar = (dt) => {
       ctx.clearRect(0, 0, largura, altura);
       ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
 
@@ -147,14 +159,19 @@ export default function MoneyRain({ className = '' }) {
         ctx.fill();
         ctx.restore();
       });
+    };
 
-      quadro = window.requestAnimationFrame(desenhar);
+    const passo = (agora) => {
+      const dt = Math.min((agora - ultimo) / 1000, 0.05); // limita salto após aba oculta
+      ultimo = agora;
+      pintar(dt);
+      quadro = window.requestAnimationFrame(passo);
     };
 
     const iniciar = () => {
-      if (quadro) return;
+      if (quadro || !comMovimento) return;
       ultimo = window.performance.now();
-      quadro = window.requestAnimationFrame(desenhar);
+      quadro = window.requestAnimationFrame(passo);
     };
 
     const parar = () => {
@@ -167,7 +184,8 @@ export default function MoneyRain({ className = '' }) {
     const aoTrocarVisibilidade = () => (document.hidden ? parar() : iniciar());
 
     dimensionar();
-    iniciar();
+    if (comMovimento) iniciar();
+    else pintar(0); // sem animação: um único quadro, cédulas paradas
 
     const observer =
       typeof ResizeObserver !== 'undefined' ? new ResizeObserver(dimensionar) : null;
@@ -181,9 +199,9 @@ export default function MoneyRain({ className = '' }) {
       else window.removeEventListener('resize', dimensionar);
       document.removeEventListener('visibilitychange', aoTrocarVisibilidade);
     };
-  }, [ativo]);
+  }, [ligado, comMovimento]);
 
-  if (!ativo) return null;
+  if (!ligado) return null;
 
   return (
     <canvas
