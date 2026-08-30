@@ -11,14 +11,18 @@ import { cx } from '../../lib/text.jsx';
  *    sem custo de layout a cada quadro.
  *  - A cor sai da CSS variable do tema. Se ela não puder ser lida, o efeito
  *    simplesmente não roda — nenhuma cor literal mora neste arquivo.
- *  - O texto do Hero é a prioridade: opacidade baixa e nada de movimento brusco.
+ *  - O texto do Hero é a prioridade: nada de movimento brusco, e o efeito fica
+ *    atrás de tudo. Mas ele também precisa ser percebido: com cédulas de 16 a
+ *    34px a 10-28% de opacidade, o desenho cobria 0,6% do Hero e sumia contra o
+ *    fundo escuro já texturizado. Estes são os números que aparecem sem disputar
+ *    com o título — ajuste aqui se quiser mais ou menos presença.
  */
 
 const MAX_PARTICULAS = 20;
-const OPACIDADE_MIN = 0.1;
-const OPACIDADE_MAX = 0.28;
-const LARGURA_MIN = 16;   // px da cédula (a altura sai da proporção 2:1)
-const LARGURA_MAX = 34;
+const OPACIDADE_MIN = 0.2;
+const OPACIDADE_MAX = 0.5;
+const LARGURA_MIN = 26;   // px da cédula (a altura sai da proporção 2:1)
+const LARGURA_MAX = 58;
 
 const aleatorio = (min, max) => min + Math.random() * (max - min);
 
