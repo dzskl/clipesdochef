@@ -135,7 +135,7 @@ public/
 ├── letreiro-clipesdochef.png   letreiro empilhado, grafia nova — NÃO USADO na página:
 │                               a proporção (1,3:1) não cabe na faixa do cabeçalho
 ├── marca-clipesdochef.jpg      arte principal (hero) — grafia nova
-├── marca-hotmart.jpg           versão com selo Hotmart — AINDA COM A GRAFIA ANTIGA
+├── marca-hotmart.jpg           versão com selo Hotmart — grafia nova
 ├── templates-clipesdochef.jpg  arte do bônus 01 (templates no Canva)
 ├── favicon.png, apple-touch-icon.png, og-image.jpg
 │                               gerados da arte nova (rosto e peça inteira)
@@ -170,13 +170,15 @@ public/
 ### Pronto
 Todas as 13 seções + comparativo, copy completo em português, identidade visual aplicada a
 partir da arte da marca, preço R$ 37,90, garantia de 7 dias, 10 perguntas no FAQ, rodapé com
-e-mail `0x1trampo@gmail.com` e Instagram `instagram.com/clipesdochef`.
+e-mail `contato@clipesdochef.com` e Instagram `instagram.com/clipesdochef`.
+
+O site está no ar em **clipesdochef.com** (Vercel, publicando da branch `main`), com o
+checkout da Hotmart ligado e todas as artes da marca na grafia correta.
 
 ### Falta (dados que só a dona tem)
 - [ ] `faq.items[6].a` — se o acesso é vitalício ou assinatura
 - [ ] 3 prints: área de membros, aulas, coleções (`included.*.image.src`) — o de
       templates já entrou (`templates-clipesdochef.jpg`)
-- [ ] Arte com o selo da Hotmart na grafia nova (substitui `marca-hotmart.jpg`)
 - [ ] Revisão jurídica das 3 páginas em `public/`
 
 A página não tem mais nenhum placeholder tracejado. Os campos de valor
@@ -184,16 +186,19 @@ A página não tem mais nenhum placeholder tracejado. Os campos de valor
 é vendido, não há pacote avulso, então não existe valor de referência a comparar. Os
 blocos que os exibiam só voltam a aparecer se os campos forem preenchidos.
 
-### Pendências em aberto
-- **Domínio**: `brand.domain` está como `clipesdochef.com.br`, não confirmado.
-
 ### Resolvidas (não reabrir)
+- **Domínio** — é **clipesdochef.com** (sem `.br`), registrado na Wix e apontado para a
+  Vercel. O campo `brand.domain` alimenta `og:url`, `og:image`, `twitter:image` e o
+  canonical; errá-lo quebra a miniatura ao compartilhar o link e confunde o Google.
+  No DNS ficou só o registro A da Vercel: os três da Wix (faixa `185.230.63.x`) foram
+  apagados porque, com vários registros A, o navegador sorteia um a cada visita e parte
+  dos acessos cairia no servidor errado.
 - **Grafia do nome** — confirmada pela dona: é **ClipesDoChef**. A arte da marca foi
   refeita com a grafia certa e já substituída em `marca-clipesdochef.jpg`, `og-image.jpg`,
   `favicon.png` e `apple-touch-icon.png`.
 
-  O logo do cabeçalho também já está na grafia nova. **Só `marca-hotmart.jpg` ainda traz
-  o `CLIIPSDOCHEF` antigo**, e depende de material que só a dona tem.
+  O logo do cabeçalho e `marca-hotmart.jpg` também já estão na grafia nova. **Nenhum
+  arquivo do projeto traz mais o `CLIIPSDOCHEF` antigo.**
 
   Sobre o formato do logo: o cabeçalho renderiza a imagem com 40px de altura, então o
   letreiro precisa ser **deitado**. O atual tem proporção 3,1:1 e sai com 125px de
