@@ -21,8 +21,8 @@ import { cx } from '../../lib/text.jsx';
 const MAX_PARTICULAS = 20;
 const OPACIDADE_MIN = 0.2;
 const OPACIDADE_MAX = 0.5;
-const LARGURA_MIN = 26;   // px da cédula (a altura sai da proporção 2:1)
-const LARGURA_MAX = 58;
+const LARGURA_MIN = 30;   // px da cédula (a altura sai da proporção 2:1)
+const LARGURA_MAX = 66;
 
 const aleatorio = (min, max) => min + Math.random() * (max - min);
 
@@ -40,9 +40,9 @@ function corDoTema() {
   return partes.length >= 3 ? partes.slice(0, 3) : null;
 }
 
-/** roundRect ainda não existe em todo navegador — este é o desenho equivalente. */
-function cedula(ctx, x, y, largura, altura, raio) {
-  const r = Math.min(raio, largura / 2, altura / 2);
+/** roundRect ainda não existe em todo navegador — este é o caminho equivalente. */
+function retanguloArredondado(ctx, x, y, largura, altura, raio) {
+  const r = Math.max(0, Math.min(raio, largura / 2, altura / 2));
   ctx.beginPath();
   ctx.moveTo(x + r, y);
   ctx.arcTo(x + largura, y, x + largura, y + altura, r);
@@ -50,6 +50,42 @@ function cedula(ctx, x, y, largura, altura, raio) {
   ctx.arcTo(x, y + altura, x, y, r);
   ctx.arcTo(x, y, x + largura, y, r);
   ctx.closePath();
+}
+
+/**
+ * Desenha uma cédula centrada em (0, 0), já com a rotação aplicada por quem chama.
+ * Um retângulo preenchido sozinho lê como mancha; o que faz o olho reconhecer
+ * dinheiro é a estrutura: corpo mais apagado, moldura interna e o medalhão do
+ * meio. Tudo em traço, sem imagem e sem cor literal — o tom vem do tema.
+ */
+function cedula(ctx, largura, altura, tom) {
+  const raio = Math.max(1.5, altura * 0.16);
+  const margem = Math.max(1.5, altura * 0.17);
+  const traco = Math.max(0.9, altura * 0.07);
+
+  // corpo: o mais apagado, para não virar bloco sólido
+  ctx.globalAlpha = tom * 0.5;
+  retanguloArredondado(ctx, -largura / 2, -altura / 2, largura, altura, raio);
+  ctx.fill();
+
+  // moldura interna: é ela que dá a leitura de nota
+  ctx.globalAlpha = tom;
+  ctx.lineWidth = traco;
+  retanguloArredondado(
+    ctx,
+    -largura / 2 + margem,
+    -altura / 2 + margem,
+    largura - margem * 2,
+    altura - margem * 2,
+    raio * 0.55,
+  );
+  ctx.stroke();
+
+  // medalhão central, onde ficaria o retrato
+  ctx.globalAlpha = tom * 0.95;
+  ctx.beginPath();
+  ctx.ellipse(0, 0, altura * 0.2, altura * 0.29, 0, 0, Math.PI * 2);
+  ctx.stroke();
 }
 
 /** A preferência de movimento reduzido tira a animação, não a decoração:
@@ -140,6 +176,7 @@ export default function MoneyRain({ className = '' }) {
     const pintar = (dt) => {
       ctx.clearRect(0, 0, largura, altura);
       ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+      ctx.strokeStyle = `rgb(${r}, ${g}, ${b})`;
 
       notas.forEach((nota) => {
         nota.y += nota.velocidade * dt;
@@ -154,9 +191,7 @@ export default function MoneyRain({ className = '' }) {
         ctx.save();
         ctx.translate(nota.x, nota.y);
         ctx.rotate(nota.angulo);
-        ctx.globalAlpha = nota.opacidade;
-        cedula(ctx, -nota.largura / 2, -h / 2, nota.largura, h, Math.max(2, h * 0.18));
-        ctx.fill();
+        cedula(ctx, nota.largura, h, nota.opacidade);
         ctx.restore();
       });
     };
