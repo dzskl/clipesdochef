@@ -106,6 +106,14 @@ export const siteConfig = {
       ratio: '1 / 1',                            // proporção do quadro
       caption: 'Acervo organizado por nicho e sempre crescendo',
     },
+    // Vídeo de fundo do Hero (arquivo em /public). Deixe src vazio para voltar
+    // às cédulas desenhadas. O vídeo precisa ter fundo escuro: ele é misturado
+    // no modo 'screen', que faz o preto sumir e só as notas aparecerem.
+    video: {
+      srcWebm: './loop-dinheiro.webm', // preferido: 23% menor que o mp4
+      src: './loop-dinheiro.mp4',      // reserva, para navegadores sem VP9 (Safari antigo)
+      poster: './loop-dinheiro.jpg',   // 1º quadro, exibido enquanto o vídeo carrega
+    },
     // Selos de confiança abaixo do CTA (deixe [] para esconder)
     trustBadges: [
       { icon: 'lock', label: 'Pagamento seguro' },

@@ -6,6 +6,7 @@ import BuyButton from '../ui/BuyButton.jsx';
 import Icon from '../ui/Icon.jsx';
 import Media from '../ui/Media.jsx';
 import MoneyRain from '../ui/MoneyRain.jsx';
+import MoneyVideo from '../ui/MoneyVideo.jsx';
 import Reveal from '../ui/Reveal.jsx';
 
 export default function Hero() {
@@ -26,8 +27,9 @@ export default function Hero() {
           WebkitMaskImage: 'radial-gradient(70% 55% at 50% 0%, #000 25%, transparent 75%)',
         }}
       />
-      {/* Chuva de cédulas: canvas atrás de tudo, sem afetar o layout */}
-      <MoneyRain />
+      {/* Fundo animado atrás de tudo, sem afetar o layout: o vídeo quando há um
+          configurado, senão as cédulas desenhadas em canvas */}
+      {hero.video?.src ? <MoneyVideo /> : <MoneyRain />}
 
       <div className="container relative z-10 pb-16 pt-12 sm:pb-20 sm:pt-16 lg:pb-24 lg:pt-14">
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr,0.95fr] lg:gap-14">
