@@ -135,10 +135,18 @@ entra o `MoneyVideo`; com o campo vazio, voltam as cédulas desenhadas do `Money
 `MoneyVideo.jsx` cobre o Hero com `object-cover` e mistura no modo `screen` — MP4 não
 tem transparência, e é o `screen` que faz o fundo quase preto do vídeo sumir em vez de
 virar um retângulo visível. **Se um dia o vídeo for trocado, ele precisa continuar tendo
-fundo escuro**, senão o truque deixa de funcionar. Por cima vem um véu `bg-background/55`,
+fundo escuro**, senão o truque deixa de funcionar.
+
+O arquivo em `public/` não é o loop original: ele é um mosaico 2x2 do vídeo enviado, com
+as quatro cópias defasadas no tempo. Isso deixa as notas na metade do tamanho sem esticar
+nada, e a defasagem evita que caiam em sincronia, o que denunciaria o mosaico. O ritmo sai
+de `hero.video.velocidade` (0,5 = metade), aplicado por `playbackRate` no elemento — dá
+para ajustar sem reprocessar o vídeo. Para regenerar o mosaico é preciso o loop original.
+
+Por cima vem um véu `bg-background/55`,
 que garante o contraste do texto em qualquer quadro: sem ele, uma nota clara passando
 atrás do título derruba a legibilidade. Medido com o véu, o pior caso dá 11:1 no título
-e 4,9:1 no parágrafo. O vídeo pausa com a aba oculta e, com `prefers-reduced-motion`,
+e 5,2:1 no parágrafo. O vídeo pausa com a aba oculta e, com `prefers-reduced-motion`,
 fica no poster, parado.
 
 `MoneyRain.jsx` é canvas 2D puro, no máximo 20 partículas, `position: absolute` com

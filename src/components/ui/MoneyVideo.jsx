@@ -40,6 +40,11 @@ export default function MoneyVideo({ className = '' }) {
     const el = videoRef.current;
     if (!el) return undefined;
 
+    // Ritmo do loop. Fica no elemento, não no arquivo, para dar para ajustar
+    // pelo config sem reprocessar o vídeo.
+    const velocidade = Number(video.velocidade);
+    if (Number.isFinite(velocidade) && velocidade > 0) el.playbackRate = velocidade;
+
     // Movimento reduzido: fica no pôster, parado. Mesma regra das cédulas.
     if (!comMovimento) {
       el.pause();
@@ -60,7 +65,7 @@ export default function MoneyVideo({ className = '' }) {
     tocar();
     document.addEventListener('visibilitychange', aoTrocarVisibilidade);
     return () => document.removeEventListener('visibilitychange', aoTrocarVisibilidade);
-  }, [comMovimento]);
+  }, [comMovimento, video.velocidade]);
 
   if (!video?.src) return null;
 

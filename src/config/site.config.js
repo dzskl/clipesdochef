@@ -113,6 +113,7 @@ export const siteConfig = {
       srcWebm: './loop-dinheiro.webm', // preferido: 23% menor que o mp4
       src: './loop-dinheiro.mp4',      // reserva, para navegadores sem VP9 (Safari antigo)
       poster: './loop-dinheiro.jpg',   // 1º quadro, exibido enquanto o vídeo carrega
+      velocidade: 0.5,                 // 1 = ritmo original; menor = notas caem mais devagar
     },
     // Selos de confiança abaixo do CTA (deixe [] para esconder)
     trustBadges: [
