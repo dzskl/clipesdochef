@@ -118,7 +118,7 @@ matematicamente opostos. Se alguém "simplificar" isso para um token só, a aces
 
 ### 3.7 Efeitos — todos desligáveis pelo config
 
-`site.config.js → behavior` controla os quatro efeitos da página. Todos respeitam
+`site.config.js → behavior` controla os efeitos da página. Todos respeitam
 `prefers-reduced-motion` e nenhum usa biblioteca externa:
 
 | Campo | O que faz |
@@ -126,34 +126,13 @@ matematicamente opostos. Se alguém "simplificar" isso para um token só, a aces
 | `animations` | entrada dos blocos ao rolar (`<Reveal>`); `false` desliga tudo |
 | `revealDirection` | `'up'` (sobe) ou `'down'` (desce) na entrada dos blocos |
 | `scrollProgress` | barra fina de progresso de leitura no topo |
-| `particles` | chuva de cédulas em canvas, quando não há vídeo de fundo |
 | `smoothScroll` | rolagem suave nas âncoras |
 
-O fundo do Hero tem dois caminhos, escolhidos por `hero.video.src`: havendo vídeo,
-entra o `MoneyVideo`; com o campo vazio, voltam as cédulas desenhadas do `MoneyRain`.
-
-`MoneyVideo.jsx` cobre o Hero com `object-cover` e mistura no modo `screen` — MP4 não
-tem transparência, e é o `screen` que faz o fundo quase preto do vídeo sumir em vez de
-virar um retângulo visível. **Se um dia o vídeo for trocado, ele precisa continuar tendo
-fundo escuro**, senão o truque deixa de funcionar.
-
-O arquivo em `public/` não é o loop original: ele é um mosaico 2x2 do vídeo enviado, com
-as quatro cópias defasadas no tempo. Isso deixa as notas na metade do tamanho sem esticar
-nada, e a defasagem evita que caiam em sincronia, o que denunciaria o mosaico. O ritmo sai
-de `hero.video.velocidade` (0,5 = metade), aplicado por `playbackRate` no elemento — dá
-para ajustar sem reprocessar o vídeo. Para regenerar o mosaico é preciso o loop original.
-
-Por cima vem um véu `bg-background/55`,
-que garante o contraste do texto em qualquer quadro: sem ele, uma nota clara passando
-atrás do título derruba a legibilidade. Medido com o véu, o pior caso dá 11:1 no título
-e 5,2:1 no parágrafo. O vídeo pausa com a aba oculta e, com `prefers-reduced-motion`,
-fica no poster, parado.
-
-`MoneyRain.jsx` é canvas 2D puro, no máximo 20 partículas, `position: absolute` com
-`pointer-events: none` — não afeta layout nem captura clique. A cor sai da CSS variable
-`--color-secondary`; se ela não puder ser lida, o efeito não roda, para nenhuma cor
-literal precisar morar no componente. O `requestAnimationFrame` pausa quando
-`document.hidden` é verdadeiro.
+O fundo do Hero é só o gradiente `ambient` mais a malha sutil, ambos em CSS. Já
+existiram ali uma chuva de cédulas em canvas (`MoneyRain`) e um vídeo de notas caindo
+(`MoneyVideo`), removidos a pedido da dona por poluírem a primeira dobra. O histórico do
+git guarda os dois, caso um dia a decisão mude — mas o padrão agora é fundo limpo, e a
+primeira dobra existe para o título e o botão, não para decoração concorrente.
 
 ### 3.8 Estrutura
 
@@ -166,7 +145,7 @@ src/
 │   └── links.js                guarda do checkout
 ├── hooks/useReveal.js          IntersectionObserver + scroll
 ├── components/ui/              Button, BuyButton, Section, Media, Reveal, Icon, Logo,
-│                               ScrollProgress, MoneyRain, MoneyVideo
+│                               ScrollProgress
 └── components/sections/        Header, Hero, Problem, Product, Benefits, Comparison,
                                 HowItWorks, Included, Offer, Guarantee, Faq, FinalCta,
                                 Footer, StickyCta
@@ -177,8 +156,6 @@ public/
 ├── marca-clipesdochef.jpg      arte principal (hero) — grafia nova
 ├── marca-hotmart.jpg           versão com selo Hotmart — grafia nova
 ├── templates-clipesdochef.jpg  arte do bônus 01 (templates no Canva)
-├── loop-dinheiro.webm/.mp4     vídeo de fundo do Hero (webm preferido, mp4 reserva)
-├── loop-dinheiro.jpg           1º quadro do vídeo, usado como poster
 ├── favicon.png, apple-touch-icon.png, og-image.jpg
 │                               gerados da arte nova (rosto e peça inteira)
 └── politica-de-privacidade.html, termos-de-uso.html, politica-de-reembolso.html
