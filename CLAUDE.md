@@ -159,7 +159,8 @@ public/
 ├── favicon.png, apple-touch-icon.png, og-image.jpg
 │                               gerados da arte nova (rosto e peça inteira)
 └── politica-de-privacidade.html, termos-de-uso.html, politica-de-reembolso.html
-                                (modelos provisórios, precisam de revisão jurídica)
+                                conteúdo real, descrevendo a operação de fato
+                                (ver seção 4.7 antes de alterar)
 ```
 
 ---
@@ -179,7 +180,22 @@ public/
    alterar `guarantee.days`, `guarantee.title` e `guarantee.seal`.
 5. **Sem promessa de ganho.** O copy fala de tempo economizado e material pronto, nunca de
    dinheiro garantido. O disclaimer do rodapé sustenta isso. Não introduza "ganhe R$ X".
-6. **A referência (mistercuts.com.br) serviu só para entender o modelo de negócio.** Nenhum
+6. **As 3 páginas de política dizem o que de fato acontece.** Elas deixaram de ser
+   esqueletos com colchetes e passaram a descrever a operação real: venda por pessoa
+   física, checkout e entrega pela Hotmart, contato `contato@clipesdochef.com`, acesso
+   vitalício por pagamento único e garantia de 7 dias do art. 49 do CDC.
+
+   A de privacidade afirma que o site **não tem formulário, não grava cookies próprios e
+   não usa analytics nem pixel** — isso foi verificado no código e é verdade hoje. **Se
+   algum dia entrar Google Analytics, Meta Pixel, chat ou formulário de captura, essa
+   página vira mentira e precisa ser corrigida junto.** O mesmo vale se a forma de venda
+   mudar: assinatura no lugar de pagamento único derruba o texto de três páginas.
+
+   O texto foi escrito aqui, não por advogado. Vale uma leitura jurídica, e dois pontos
+   merecem atenção nela: o item 5 dos Termos (licença de uso do acervo) e a origem do
+   material da biblioteca, que é o tipo de risco que só um profissional sabe dimensionar.
+
+7. **A referência (mistercuts.com.br) serviu só para entender o modelo de negócio.** Nenhum
    texto, imagem ou trecho de código foi copiado, e nada deve ser. O copy atual é autoral.
 
 ---
@@ -197,7 +213,7 @@ checkout da Hotmart ligado e todas as artes da marca na grafia correta.
 ### Falta (dados que só a dona tem)
 - [ ] 3 prints: área de membros, aulas, coleções (`included.*.image.src`) — o de
       templates já entrou (`templates-clipesdochef.jpg`)
-- [ ] Revisão jurídica das 3 páginas em `public/`
+- [ ] Leitura das 3 páginas de política por um advogado (conteúdo já é real — ver 4.7)
 
 A página não tem mais nenhum placeholder tracejado. Os campos de valor
 (`included.*.value`, `included.totalValue`) ficaram **vazios de propósito**: só o combo
