@@ -37,7 +37,7 @@ export default function Included() {
               src={included.main.image.src}
               alt={included.main.image.alt}
               placeholder={included.main.image.placeholder}
-              ratio="4 / 3"
+              ratio={included.main.image.ratio || '4 / 3'}
             />
             <div>
               <span className="inline-flex items-center gap-2 rounded-full bg-primary px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-on-primary">

@@ -156,6 +156,7 @@ public/
 ├── marca-clipesdochef.jpg      arte principal (hero) — grafia nova
 ├── marca-hotmart.jpg           versão com selo Hotmart — grafia nova
 ├── templates-clipesdochef.jpg  arte do bônus 01 (templates no Canva)
+├── area-de-membros.jpg         print real da área de membros (produto principal)
 ├── favicon.png, apple-touch-icon.png, og-image.jpg
 │                               gerados da arte nova (rosto e peça inteira)
 └── politica-de-privacidade.html, termos-de-uso.html, politica-de-reembolso.html
@@ -211,8 +212,12 @@ O site está no ar em **clipesdochef.com** (Vercel, publicando da branch `main`)
 checkout da Hotmart ligado e todas as artes da marca na grafia correta.
 
 ### Falta (dados que só a dona tem)
-- [ ] 1 print: a área de membros (`included.main.image.src`)
 - [ ] Leitura das 3 páginas de política por um advogado (conteúdo já é real — ver 4.7)
+
+O print da área de membros é **em pé** (4/5). O card do produto principal lia uma
+proporção fixa de 4/3 e cortaria o topo e a base da imagem, então passou a ler
+`included.main.image.ratio`, com 4/3 como padrão — mesmo arranjo que o hero já usava.
+Trocando o print por um deitado, basta ajustar esse campo.
 
 Só existe **um bônus** (templates no Canva). Os bônus 02 (aulas) e 03 (coleções) foram
 removidos da seção a pedido da dona — era decisão visual, não mudança de produto: as aulas

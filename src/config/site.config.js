@@ -253,7 +253,12 @@ export const siteConfig = {
       title: 'Acesso à biblioteca ClipesDoChef',
       text: 'Acervo de cortes em boa qualidade, separado por nicho e sempre em crescimento. Você baixa o que quiser e usa nas suas páginas.',
       value: '',                  // vazio = a linha de valor some
-      image: { src: '', alt: 'Área de membros do ClipesDoChef', placeholder: '[PRINT DA ÁREA DE MEMBROS]' },
+      image: {
+        src: './area-de-membros.jpg',
+        alt: 'Área de membros do ClipesDoChef, com os cortes separados por nicho',
+        placeholder: '[PRINT DA ÁREA DE MEMBROS]',
+        ratio: '4 / 5',   // o print é em pé; com 4/3 o topo e a base seriam cortados
+      },
       highlights: [
         'Diversos nichos organizados por tema',
         'Mais de 7.000 cortes disponíveis',
