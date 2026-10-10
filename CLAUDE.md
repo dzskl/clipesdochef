@@ -195,7 +195,6 @@ O site está no ar em **clipesdochef.com** (Vercel, publicando da branch `main`)
 checkout da Hotmart ligado e todas as artes da marca na grafia correta.
 
 ### Falta (dados que só a dona tem)
-- [ ] `faq.items[6].a` — se o acesso é vitalício ou assinatura
 - [ ] 3 prints: área de membros, aulas, coleções (`included.*.image.src`) — o de
       templates já entrou (`templates-clipesdochef.jpg`)
 - [ ] Revisão jurídica das 3 páginas em `public/`
@@ -226,6 +225,9 @@ blocos que os exibiam só voltam a aparecer se os campos forem preenchidos.
   Se algum dia faltar um letreiro deitado, a saída é trocar `brand.logo.type` para
   `'text'`, que faz o componente `Logo` renderizar `brand.logo.text`. Nunca propague a
   grafia de uma imagem para o texto.
+- **Duração do acesso** — confirmada pela dona: é **vitalício**, pagamento único, sem
+  mensalidade, e as novidades entram sem custo adicional. Está no FAQ e é coerente com
+  `offer.paymentInfo` ('Pagamento único') e com o aviso do topo ('sem custo extra').
 - **Frequência de atualização** — confirmada pela dona: a biblioteca **não tem frequência
   fixa de atualização**. Toda promessa de atualização diária saiu do copy; o texto agora diz
   "com frequência" / "sempre crescendo". **Não reintroduza "todos os dias" descrevendo a

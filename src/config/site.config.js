@@ -332,7 +332,7 @@ export const siteConfig = {
       { q: 'Preciso ter experiência para começar?', a: 'Não. As aulas começam do zero e os templates já vêm prontos. Se você usa o celular no dia a dia e sabe o básico do Canva, consegue montar seu primeiro vídeo no mesmo dia.' },
       { q: 'Preciso gravar ou aparecer nos vídeos?', a: 'Não. Todo o material de vídeo vem da biblioteca. Seu trabalho é escolher o corte, editar e publicar.' },
       { q: 'Posso usar em mais de uma página?', a: 'Sim. O acesso é pessoal e intransferível, mas o material pode ser usado nas suas próprias páginas, em quantas redes você quiser.' },
-      { q: 'Por quanto tempo tenho acesso?', a: '[Informe aqui se o acesso é vitalício ou por período/assinatura, e se as atualizações estão incluídas.]' },
+      { q: 'Por quanto tempo tenho acesso?', a: 'O acesso é vitalício: você paga uma vez e a biblioteca continua disponível, sem mensalidade e sem renovação. Os cortes que entrarem depois da sua compra também ficam liberados, sem custo adicional.' },
       { q: 'Existe suporte?', a: 'Sim. O atendimento é feito pelo nosso canal oficial de contato, com resposta em horário comercial.' },
       { q: 'Como funciona a garantia?', a: 'Você tem 7 dias a partir da compra para pedir o reembolso integral, sem precisar justificar, pelo nosso canal de atendimento. É o direito de arrependimento do artigo 49 do Código de Defesa do Consumidor.' },
       { q: 'O pagamento é seguro?', a: 'Sim. A compra é processada pela Hotmart, responsável pelo pagamento e pela liberação do acesso. Aceitamos Pix, cartão de crédito e boleto.' },
