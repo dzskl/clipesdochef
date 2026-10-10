@@ -1,13 +1,21 @@
 import React from 'react';
 import { siteConfig } from '../../config/site.config.js';
 import { Section, SectionHeading } from '../ui/Section.jsx';
-import { Val } from '../../lib/text.jsx';
+import { Val, cx } from '../../lib/text.jsx';
 import Icon from '../ui/Icon.jsx';
 import Media from '../ui/Media.jsx';
 import Reveal from '../ui/Reveal.jsx';
 
 export default function Included() {
   const { included } = siteConfig;
+
+  // A grade acompanha quantos bônus existem. Com três colunas fixas, um bônus
+  // só ficaria sozinho ocupando um terço da largura, com o resto vazio.
+  const quantos = included.bonuses.length;
+  const grade =
+    quantos === 1 ? 'mx-auto max-w-sm'
+    : quantos === 2 ? 'mx-auto max-w-3xl sm:grid-cols-2'
+    : 'sm:grid-cols-2 lg:grid-cols-3';
 
   return (
     <Section id="incluso" className="bg-surface-alt/40">
@@ -62,7 +70,7 @@ export default function Included() {
       </Reveal>
 
       {/* Bônus */}
-      <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+      <ul className={cx('mt-6 grid gap-5 lg:gap-6', grade)}>
         {included.bonuses.map((bonus, index) => (
           <Reveal as="li" key={bonus.title} delay={index * 90}>
             <article className="card card-hover flex h-full flex-col">

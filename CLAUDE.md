@@ -211,9 +211,16 @@ O site está no ar em **clipesdochef.com** (Vercel, publicando da branch `main`)
 checkout da Hotmart ligado e todas as artes da marca na grafia correta.
 
 ### Falta (dados que só a dona tem)
-- [ ] 3 prints: área de membros, aulas, coleções (`included.*.image.src`) — o de
-      templates já entrou (`templates-clipesdochef.jpg`)
+- [ ] 1 print: a área de membros (`included.main.image.src`)
 - [ ] Leitura das 3 páginas de política por um advogado (conteúdo já é real — ver 4.7)
+
+Só existe **um bônus** (templates no Canva). Os bônus 02 (aulas) e 03 (coleções) foram
+removidos da seção a pedido da dona — era decisão visual, não mudança de produto: as aulas
+e as coleções **continuam fazendo parte do que o cliente recebe** e seguem citadas no
+título, na descrição, no comparativo, no FAQ, na lista da oferta e no CTA final. Não
+remova essas menções achando que ficaram órfãs. A grade de bônus em `Included.jsx` se
+adapta à quantidade: com um card ela centraliza, com dois limita a largura, com três ou
+mais volta a ser a grade cheia.
 
 A página não tem mais nenhum placeholder tracejado. Os campos de valor
 (`included.*.value`, `included.totalValue`) ficaram **vazios de propósito**: só o combo
